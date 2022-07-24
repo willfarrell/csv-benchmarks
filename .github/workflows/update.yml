@@ -1,0 +1,57 @@
+name: Run Benchmarks
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  benchmark:
+    name: Benchmark
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up Node.js 18.x
+        uses: actions/setup-node@master
+        with:
+          node-version: 18.x
+
+      -
+        name: Cache npm
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      -
+        name: Use npm 8
+        run: |
+          npm install -g npm@8
+          
+      -
+        name: Install dependencies
+        run: |
+          npm install
+      -
+        name: Run benchmarks
+        run: |
+          npm start
+      -
+        name: Check for file changes
+        run: |
+          git status --porcelain
+          echo "change=$(git status --porcelain | wc -l)" >> $GITHUB_ENV
+      -
+        if: env.change != 0
+        name: Commit & push changes
+        run: |
+          git config --local user.name ${{ github.actor }}
+          git config --local user.email github-actions@github.com
+          git add -A
+          git commit -a -m 'ci: update results'
+          git push "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF#refs/*/}

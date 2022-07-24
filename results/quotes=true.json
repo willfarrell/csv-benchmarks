@@ -1,0 +1,40 @@
+{
+  "type": "line",
+  "data": {
+    "labels": [
+      "10x10K"
+    ],
+    "datasets": [
+      {
+        "label": "datastream",
+        "data": [
+          "33.36"
+        ]
+      },
+      {
+        "label": "papaparse",
+        "data": [
+          "37.88"
+        ]
+      },
+      {
+        "label": "csv-parser",
+        "data": [
+          "49.63"
+        ]
+      },
+      {
+        "label": "csv",
+        "data": [
+          "84.51"
+        ]
+      },
+      {
+        "label": "fast-csv",
+        "data": [
+          "123.37"
+        ]
+      }
+    ]
+  }
+}
