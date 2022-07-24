@@ -8,7 +8,7 @@ Benchmarks of popular CSV parsers:
 * [csv-parse](https://csv.js.org/parse/)
 * [fast-csv](https://www.npmjs.com/package/fast-csv)
   
-The tests run on generated data files with 10/100 columns and 10k/100k/1M/10M rows, both quoted and unquoted.
+The tests run on generated data files with 10/100 columns and 10k/100k/1M rows, both quoted and unquoted.
 
 
 ## Results 
