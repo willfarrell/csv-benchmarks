@@ -44,16 +44,16 @@ const tests = [
     rows: 1_000_000,
     cycles: 3,
   },
-  {
-    columns: 10,
-    rows: 10_000_000,
-    cycles: 2,
-  },
-  {
-    columns: 100,
-    rows: 10_000_000,
-    cycles: 2,
-  },
+//{
+//  columns: 10,
+//  rows: 10_000_000,
+//  cycles: 2,
+//},
+//{
+//  columns: 100,
+//  rows: 10_000_000,
+//  cycles: 2,
+//},
 ];
 
 const run = async (quotes = false) => {
