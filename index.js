@@ -19,36 +19,41 @@ const tests = [
     rows: 10_000,
     cycles: 20,
   },
-//{
-//  columns: 100,
-//  rows: 10_000,
-//  cycles: 10,
-//},
-//{
-//  columns: 10,
-//  rows: 100_000,
-//  cycles: 5,
-//},
-//{
-//  columns: 100,
-//  rows: 100_000,
-//  cycles: 5,
-//},
-//{
-//  columns: 10,
-//  rows: 1_000_000,
-//  cycles: 5,
-//},
-//{
-//  columns: 100,
-//  rows: 1_000_000,
-//  cycles: 5,
-  //},
-//{
-//  columns: 10,
-//  rows: 10_000_000,
-//  cycles: 5,
-//},
+  {
+    columns: 100,
+    rows: 10_000,
+    cycles: 10,
+  },
+  {
+    columns: 10,
+    rows: 100_000,
+    cycles: 5,
+  },
+  {
+    columns: 100,
+    rows: 100_000,
+    cycles: 5,
+  },
+  {
+    columns: 10,
+    rows: 1_000_000,
+    cycles: 3,
+  },
+  {
+    columns: 100,
+    rows: 1_000_000,
+    cycles: 3,
+  },
+  {
+    columns: 10,
+    rows: 10_000_000,
+    cycles: 2,
+  },
+  {
+    columns: 100,
+    rows: 10_000_000,
+    cycles: 2,
+  },
 ];
 
 const run = async (quotes = false) => {
