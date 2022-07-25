@@ -12,30 +12,30 @@
         "label": "csv-rex",
         "fill": false,
         "data": [
-          38,
-          327,
-          299,
-          2928
+          32,
+          290,
+          287,
+          2870
         ]
       },
       {
         "label": "papaparse",
         "fill": false,
         "data": [
-          32,
-          258,
-          274,
-          2632
+          31,
+          246,
+          302,
+          3412
         ]
       },
       {
         "label": "csv-parser",
         "fill": false,
         "data": [
-          56,
-          520,
-          552,
-          5481
+          66,
+          553,
+          522,
+          5419
         ]
       },
       {
@@ -43,9 +43,9 @@
         "fill": false,
         "data": [
           83,
-          704,
-          786,
-          7082
+          680,
+          745,
+          8813
         ]
       },
       {
@@ -53,9 +53,9 @@
         "fill": false,
         "data": [
           135,
-          1297,
-          1412,
-          13578
+          1186,
+          1470,
+          13612
         ]
       }
     ]
@@ -78,6 +78,7 @@
       "yAxes": [
         {
           "display": true,
+          "type": "logarithmic",
           "scaleLabel": {
             "display": true,
             "labelString": "duration (ms)"

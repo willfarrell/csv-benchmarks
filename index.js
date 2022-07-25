@@ -83,6 +83,7 @@ const run = async (quotes = false) => {
         yAxes: [
           {
             display: true,
+            type: 'logarithmic',
             scaleLabel: {
               display: true,
               labelString: 'duration (ms)',

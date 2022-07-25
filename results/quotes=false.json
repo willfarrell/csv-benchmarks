@@ -22,40 +22,40 @@
         "label": "papaparse",
         "fill": false,
         "data": [
-          32,
-          267,
-          312,
-          2848
+          38,
+          304,
+          343,
+          2881
         ]
       },
       {
         "label": "csv-parser",
         "fill": false,
         "data": [
-          62,
-          605,
-          645,
-          5122
+          51,
+          477,
+          510,
+          5227
         ]
       },
       {
         "label": "csv",
         "fill": false,
         "data": [
-          76,
-          752,
-          965,
-          8112
+          78,
+          757,
+          1077,
+          8706
         ]
       },
       {
         "label": "fast-csv",
         "fill": false,
         "data": [
-          138,
-          1299,
-          1484,
-          13691
+          160,
+          1667,
+          1480,
+          13010
         ]
       }
     ]
@@ -78,6 +78,7 @@
       "yAxes": [
         {
           "display": true,
+          "type": "logarithmic",
           "scaleLabel": {
             "display": true,
             "labelString": "duration (ms)"
