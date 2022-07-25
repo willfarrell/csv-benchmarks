@@ -1,1 +1,7 @@
-"| Package | 10x10K | 100x10K | 10x100K | 100x100K \n|---------|---|---|---|---\n| **csv-rex** | 37ms | 286ms | 318ms | 3194 \n| **papaparse** | 42ms | 331ms | 359ms | 2886 \n| **csv-parser** | 59ms | 555ms | 603ms | 5634 \n| **csv** | 83ms | 883ms | 1111ms | 14343 \n| **fast-csv** | 682ms | 2420ms | 1920ms | 22217 \n"
+| Package | 10x10K | 100x10K | 10x100K | 100x100K 
+|---------|---|---|---|---
+| **csv-rex** | 37ms | 294ms | 320ms | 2935 
+| **papaparse** | 39ms | 322ms | 374ms | 3580 
+| **csv-parser** | 69ms | 668ms | 709ms | 7528 
+| **csv** | 113ms | 986ms | 1210ms | 9548 
+| **fast-csv** | 157ms | 1396ms | 1777ms | 15836 
