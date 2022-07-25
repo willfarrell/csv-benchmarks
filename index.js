@@ -127,18 +127,17 @@ const run = async (quotes = false) => {
     table += `| **${dataset.label}** | ${dataset.data.join('ms | ')} \n`
   }
   
-  console.log(JSON.stringify(chart))
-  console.log(table)
-  
   // Save results
+  console.log(table)
+  await pipeline([
+    createReadableStream(table),
+    createWriteStream(join(__dirname, `results/quotes=${quotes}.md`))
+  ])
+  
+  console.log(JSON.stringify(chart))
   await pipeline([
     createReadableStream(JSON.stringify(chart, null, 2)),
     createWriteStream(join(__dirname, `results/quotes=${quotes}.json`))
-  ])
-  
-  await pipeline([
-    createReadableStream(JSON.stringify(table, null, 2)),
-    createWriteStream(join(__dirname, `results/quotes=${quotes}.md`))
   ])
   
   await pipeline([
