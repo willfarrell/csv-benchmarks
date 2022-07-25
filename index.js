@@ -1,7 +1,7 @@
 import { tmpdir } from 'node:os'
 import { dirname, join } from "node:path"
 import { createReadStream, createWriteStream } from 'node:fs'
-import { writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { pipeline, pipejoin, streamToArray, streamToString, createReadableStream } from '@datastream/core'
 import { generateCSV } from "./lib/generateCSV.js";
 import { benchmark } from "./lib/benchmark.js";
@@ -94,6 +94,9 @@ const run = async (quotes = false) => {
     },
   }
   
+  let table = `| Package | ${chart.data.labels.join(' | ')} \n`
+     table += `|---------|-${chart.data.labels.map(v => ('-')).join('-|-')}-\n`
+  
   for(const source of sources) {  
     const dataset = {
       label: source,
@@ -112,35 +115,45 @@ const run = async (quotes = false) => {
       let stream = async () => pipeline([
         createReadStream(readableFileName),
         await parse(),
-        //    format(),
+        //    await format(),
         //    createWriteStream(writableFileName, {encoding:'utf8'})
       ])
       
       const result = await benchmark(source, stream, { cycles, columns, rows });
       dataset.data.push(result)
-      //  stream = pipeline([
-      //    createReadableStream(lines),
-      //    format(),
-      //    createWriteStream(writableFileName, {encoding:'utf8'})
-      //  ])
-      //  
-      //  await benchmark(source, stream, { cycles })
       
     }
     chart.data.datasets.push(dataset)
+    table += `| **${dataset.label}** | ${dataset.data.join('ms | ')} \n`
   }
   
   console.log(JSON.stringify(chart))
+  console.log(table)
   
+  // Save results
   await pipeline([
     createReadableStream(JSON.stringify(chart, null, 2)),
     createWriteStream(join(__dirname, `results/quotes=${quotes}.json`))
   ])
   
   await pipeline([
+    createReadableStream(JSON.stringify(table, null, 2)),
+    createWriteStream(join(__dirname, `results/quotes=${quotes}.md`))
+  ])
+  
+  await pipeline([
     await fetch(`https://quickchart.io/chart?c=${JSON.stringify(chart)}`).then(res => res.body),
     createWriteStream(join(__dirname, `results/quotes=${quotes}.png`))
   ])
+  
+  // Update README
+  await readFile(join(__dirname, `README.md`), { encoding: 'utf8' })
+  .then(data => {
+    const pattern = new RegExp(`<!-- quotes=${quotes} -->([\\s\\S]*?)<!-- quotes=${quotes} -->`)
+    return data.replace(pattern, `<!-- quotes=${quotes} -->\n${table}<!-- quotes=${quotes} -->`)
+  })
+  .then(data => writeFile(join(__dirname, `README.md`), data, { encoding: 'utf8' }))
+
 }
 
 await run(true)
