@@ -16,13 +16,9 @@ The tests run on generated data files with 10/100 columns and 10k/100k rows, bot
 ## Results 
 Benchmarked on GitHub Actions. Raw numbers are in the results folder.
 
-### Non-Quoted CSV files
-![Non-Quoted CSV Parser Benchmarks](https://github.com/willfarrell/csv-benchmarks/raw/main/results/quotes%3Dfalse.png)
-
-
-### Quoted CSV Files
 ![Quoted CSV Parser Benchmarks](https://github.com/willfarrell/csv-benchmarks/raw/main/results/quotes%3Dtrue.png)
 
+![Non-Quoted CSV Parser Benchmarks](https://github.com/willfarrell/csv-benchmarks/raw/main/results/quotes%3Dfalse.png)
 
 ## Roadmap
 - Add in more parsers
