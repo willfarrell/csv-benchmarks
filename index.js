@@ -34,16 +34,18 @@ const tests = [
     rows: 100_000,
     cycles: 5,
   },
-  {
-    columns: 10,
-    rows: 1_000_000,
-    cycles: 3,
-  },
-  {
-    columns: 100,
-    rows: 1_000_000,
-    cycles: 3,
-  },
+  // Skews graph
+//{
+//  columns: 10,
+//  rows: 1_000_000,
+//  cycles: 3,
+//},
+//{
+//  columns: 100,
+//  rows: 1_000_000,
+//  cycles: 3,
+//},
+  // Super slow
 //{
 //  columns: 10,
 //  rows: 10_000_000,
@@ -62,12 +64,39 @@ const run = async (quotes = false) => {
     data: {
       labels: tests.map(t => `${t.columns}x${t.rows/1000}K`),
       datasets: []
-    }
+    },
+    options: {
+      title: {
+        display: true,
+        text: `CSV Benchmarks with quotes=${quotes}`,
+      },
+      scales: {
+        xAxes: [
+          {
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'columns x rows',
+            },
+          },
+        ],
+        yAxes: [
+          {
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'duration (ms)',
+            },
+          },
+        ],
+      },
+    },
   }
   
   for(const source of sources) {  
     const dataset = {
       label: source,
+      fill: false,
       data: []
     }
     const { parse, format } = await import(`./packages/${source}/index.js`)
@@ -99,6 +128,8 @@ const run = async (quotes = false) => {
     }
     chart.data.datasets.push(dataset)
   }
+  
+  console.log(JSON.stringify(chart))
   
   await pipeline([
     createReadableStream(JSON.stringify(chart, null, 2)),

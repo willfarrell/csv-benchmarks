@@ -2,39 +2,88 @@
   "type": "line",
   "data": {
     "labels": [
-      "10x10K"
+      "10x10K",
+      "100x10K",
+      "10x100K",
+      "100x100K"
     ],
     "datasets": [
       {
-        "label": "datastream",
+        "label": "csv-rex",
+        "fill": false,
         "data": [
-          "33.36"
+          38,
+          327,
+          299,
+          2928
         ]
       },
       {
         "label": "papaparse",
+        "fill": false,
         "data": [
-          "37.88"
+          32,
+          258,
+          274,
+          2632
         ]
       },
       {
         "label": "csv-parser",
+        "fill": false,
         "data": [
-          "49.63"
+          56,
+          520,
+          552,
+          5481
         ]
       },
       {
         "label": "csv",
+        "fill": false,
         "data": [
-          "84.51"
+          83,
+          704,
+          786,
+          7082
         ]
       },
       {
         "label": "fast-csv",
+        "fill": false,
         "data": [
-          "123.37"
+          135,
+          1297,
+          1412,
+          13578
         ]
       }
     ]
+  },
+  "options": {
+    "title": {
+      "display": true,
+      "text": "CSV Benchmarks with quotes=true"
+    },
+    "scales": {
+      "xAxes": [
+        {
+          "display": true,
+          "scaleLabel": {
+            "display": true,
+            "labelString": "columns x rows"
+          }
+        }
+      ],
+      "yAxes": [
+        {
+          "display": true,
+          "scaleLabel": {
+            "display": true,
+            "labelString": "duration (ms)"
+          }
+        }
+      ]
+    }
   }
 }
