@@ -5,10 +5,11 @@ Benchmarks of popular CSV parsers:
 | Package                                                | Version | Downloads
 |--------------------------------------------------------|---------|---------
 | [csv-rex](https://github.com/willfarrell/csv-rex)      | ![npm (scoped)](https://img.shields.io/npm/v/@datastream/csv) | ![npm](https://img.shields.io/npm/dw/@datastream/csv)
-| [PapaParse](https://www.papaparse.com/)                | ![npm (scoped)](https://img.shields.io/npm/v/papaparse) | ![npm](https://img.shields.io/npm/dw/papaparse)
-| [csv-parser](https://www.npmjs.com/package/csv-parser) | ![npm (scoped)](https://img.shields.io/npm/v/csv-parser) | ![npm](https://img.shields.io/npm/dw/csv-parser)
-| [csv](https://csv.js.org)                              | ![npm (scoped)](https://img.shields.io/npm/v/csv) | ![npm](https://img.shields.io/npm/dw/csv)
-| [fast-csv](https://www.npmjs.com/package/fast-csv)     | ![npm (scoped)](https://img.shields.io/npm/v/fast-csv) | ![npm](https://img.shields.io/npm/dw/fast-csv)
+| [PapaParse](https://www.papaparse.com/)                | ![npm (scoped)](https://img.shields.io/npm/v/papaparse)       | ![npm](https://img.shields.io/npm/dw/papaparse)
+| [csv-parser](https://www.npmjs.com/package/csv-parser) | ![npm (scoped)](https://img.shields.io/npm/v/csv-parser)      | ![npm](https://img.shields.io/npm/dw/csv-parser)
+| [csvtojson](https://www.npmjs.com/package/csvtojson)   | ![npm (scoped)](https://img.shields.io/npm/v/csvtojson)       | ![npm](https://img.shields.io/npm/dw/csvtojson)
+| [csv](https://csv.js.org)                              | ![npm (scoped)](https://img.shields.io/npm/v/csv)             | ![npm](https://img.shields.io/npm/dw/csv)
+| [fast-csv](https://www.npmjs.com/package/fast-csv)     | ![npm (scoped)](https://img.shields.io/npm/v/fast-csv)        | ![npm](https://img.shields.io/npm/dw/fast-csv)
 
 The tests run on generated data files with 10/100 columns and 10k/100k rows, both quoted and unquoted. The stream implementation for each library were used to keep comparison consistent, but can be slower compared to self chunking in certain use cases.
 
