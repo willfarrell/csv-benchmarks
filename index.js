@@ -11,7 +11,7 @@ import { fileURLToPath } from "url"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const sources = ['csv-rex','papaparse', 'csv-parser', 'csv', 'fast-csv']
+const sources = ['csv-rex','papaparse', 'csv-parser', 'csvtojson', 'csv', 'fast-csv']
 
 const tests = [
   {
@@ -103,7 +103,7 @@ const run = async (quotes = false) => {
       fill: false,
       data: []
     }
-    const { parse, format } = await import(`./packages/${source}/index.js`)
+    const { parse } = await import(`./packages/${source}/index.js`)
     for (const { rows, columns, cycles } of tests) {
       const quotes = true
       const readableFileName = join(tmpdir(), `${columns}x${rows}_${quotes ? 'quoted' : 'slim'}.csv`)
@@ -114,7 +114,7 @@ const run = async (quotes = false) => {
       // Benchmark
       let stream = async () => pipeline([
         createReadStream(readableFileName),
-        await parse(),
+        parse(),
         //    await format(),
         //    createWriteStream(writableFileName, {encoding:'utf8'})
       ])

@@ -12,50 +12,60 @@
         "label": "csv-rex",
         "fill": false,
         "data": [
-          34,
-          283,
-          318,
-          3473
+          27,
+          205,
+          227,
+          2086
         ]
       },
       {
         "label": "papaparse",
         "fill": false,
         "data": [
-          45,
-          331,
-          347,
-          3030
+          29,
+          219,
+          245,
+          2217
+        ]
+      },
+      {
+        "label": "csvtojson",
+        "fill": false,
+        "data": [
+          62,
+          546,
+          561,
+          5872
         ]
       },
       {
         "label": "csv-parser",
         "fill": false,
         "data": [
-          69,
-          613,
-          688,
-          6337
+          47,
+          448,
+          633,
+          5365
         ]
       },
       {
         "label": "csv",
         "fill": false,
         "data": [
-          108,
-          889,
-          959,
-          9029
+          89,
+          839,
+          977,
+          8795
         ]
       },
       {
         "label": "fast-csv",
         "fill": false,
         "data": [
-          166,
-          1428,
-          1642,
-          14712
+          159,
+          1501,
+          1495,
+          14684
         ]
       }
     ]

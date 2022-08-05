@@ -21,11 +21,12 @@ Benchmarked on GitHub Actions.
 <!-- quotes=true -->
 | Package | 10x10K | 100x10K | 10x100K | 100x100K 
 |---------|---|---|---|---
-| **csv-rex** | 34ms | 283ms | 318ms | 3473 
-| **papaparse** | 45ms | 331ms | 347ms | 3030 
-| **csv-parser** | 69ms | 613ms | 688ms | 6337 
-| **csv** | 108ms | 889ms | 959ms | 9029 
-| **fast-csv** | 166ms | 1428ms | 1642ms | 14712 
+| **csv-rex** | 27ms | 205ms | 227ms | 2086 
+| **papaparse** | 29ms | 219ms | 245ms | 2217 
+| **csvtojson** | 62ms | 546ms | 561ms | 5872 
+| **csv-parser** | 47ms | 448ms | 633ms | 5365 
+| **csv** | 89ms | 839ms | 977ms | 8795 
+| **fast-csv** | 159ms | 1501ms | 1495ms | 14684 
 <!-- quotes=true -->
 
 ![Non-Quoted CSV Parser Benchmarks](https://github.com/willfarrell/csv-benchmarks/raw/main/results/quotes%3Dfalse.png)
@@ -33,11 +34,12 @@ Benchmarked on GitHub Actions.
 <!-- quotes=false -->
 | Package | 10x10K | 100x10K | 10x100K | 100x100K 
 |---------|---|---|---|---
-| **csv-rex** | 37ms | 294ms | 320ms | 2935 
-| **papaparse** | 39ms | 322ms | 374ms | 3580 
-| **csv-parser** | 69ms | 668ms | 709ms | 7528 
-| **csv** | 113ms | 986ms | 1210ms | 9548 
-| **fast-csv** | 157ms | 1396ms | 1777ms | 15836 
+| **csv-rex** | 34ms | 270ms | 301ms | 2532 
+| **papaparse** | 31ms | 260ms | 296ms | 2672 
+| **csvtojson** | 74ms | 620ms | 783ms | 5912 
+| **csv-parser** | 59ms | 574ms | 643ms | 5958 
+| **csv** | 91ms | 791ms | 899ms | 8192 
+| **fast-csv** | 144ms | 1465ms | 1526ms | 14908 
 <!-- quotes=false -->
 
 ## Roadmap
