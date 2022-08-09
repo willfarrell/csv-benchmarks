@@ -13,6 +13,12 @@ Benchmarks of popular CSV parsers:
 
 The tests run on generated data files with 10/100 columns and 10k/100k rows, both quoted and unquoted. The stream implementation for each library were used to keep comparison consistent, but can be slower compared to self chunking in certain use cases.
 
+| rows x columns | cycles
+|----------------|--------
+|  10 x 10,000   | 10
+| 100 x 10,000   | 10
+|  10 x 100,000  |  5
+| 100 x 100,000  |  5
 
 ## Results 
 Benchmarked on GitHub Actions.
