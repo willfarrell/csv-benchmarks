@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "npm outdated && node index.js"
   },
   "repository": {
     "type": "git",
@@ -27,12 +27,14 @@
   "dependencies": {
     "@datastream/core": "^0.0.0",
     "@datastream/csv": "^0.0.0",
-    "csv": "^6.2.0",
-    "csv-parser": "^3.0.0",
-    "csv-rex": "^0.3.0",
-    "csvtojson": "^2.0.10",
-    "fast-csv": "^4.3.6",
-    "jsontocsv": "^0.3.0",
-    "papaparse": "^5.3.0"
+    "csv-parse": "5.3.0",
+    "csv-parser": "3.0.0",
+    "csv-rex": "0.3.0",
+    "csv-stringify": "6.2.0",
+    "csvtojson": "2.0.10",
+    "fast-csv": "4.3.6",
+    "json2csv": "5.0.7",
+    "jsontocsv": "0.3.0",
+    "papaparse": "5.3.2"
   }
 }

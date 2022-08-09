@@ -5,67 +5,63 @@
       "10x10K",
       "100x10K",
       "10x100K",
-      "100x100K"
+      "100x100K",
+      "10x1000K"
     ],
     "datasets": [
       {
         "label": "csv-rex",
         "fill": false,
         "data": [
-          34,
-          270,
-          301,
-          2532
+          "15",
+          "132",
+          "138",
+          "1,338",
+          "1,417"
         ]
       },
       {
         "label": "papaparse",
         "fill": false,
         "data": [
-          31,
-          260,
-          296,
-          2672
-        ]
-      },
-      {
-        "label": "csvtojson",
-        "fill": false,
-        "data": [
-          74,
-          620,
-          783,
-          5912
+          "16",
+          "141",
+          "147",
+          "1,431",
+          "1,514"
         ]
       },
       {
         "label": "csv-parser",
         "fill": false,
         "data": [
-          59,
-          574,
-          643,
-          5958
+          "25",
+          "236",
+          "252",
+          "2,477",
+          "2,644"
         ]
       },
       {
-        "label": "csv",
+        "label": "csvtojson",
         "fill": false,
         "data": [
-          91,
-          791,
-          899,
-          8192
+          "30",
+          "267",
+          "297",
+          "2,699",
+          "3,015"
         ]
       },
       {
-        "label": "fast-csv",
+        "label": "csv-parse",
         "fill": false,
         "data": [
-          144,
-          1465,
-          1526,
-          14908
+          "40",
+          "353",
+          "398",
+          "3,681",
+          "4,135"
         ]
       }
     ]
@@ -73,7 +69,7 @@
   "options": {
     "title": {
       "display": true,
-      "text": "CSV Benchmarks with quotes=false"
+      "text": "CSV parse Benchmarks with quotes=true"
     },
     "scales": {
       "xAxes": [
