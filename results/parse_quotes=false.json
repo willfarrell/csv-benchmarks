@@ -10,58 +10,58 @@
     ],
     "datasets": [
       {
-        "label": "csv-rex",
-        "fill": false,
-        "data": [
-          10,
-          80,
-          85,
-          828,
-          872
-        ]
-      },
-      {
         "label": "papaparse",
         "fill": false,
         "data": [
-          6,
-          30,
-          53,
-          292,
-          535
+          13,
+          66,
+          128,
+          615,
+          1260
         ]
       },
       {
-        "label": "csv-parser",
+        "label": "csv-rex",
         "fill": false,
         "data": [
-          21,
-          205,
-          222,
-          2198,
-          2324
+          22,
+          180,
+          209,
+          1801,
+          2115
         ]
       },
       {
         "label": "csvtojson",
         "fill": false,
         "data": [
-          17,
-          154,
-          170,
-          1553,
-          1753
+          42,
+          378,
+          417,
+          3797,
+          4271
+        ]
+      },
+      {
+        "label": "csv-parser",
+        "fill": false,
+        "data": [
+          52,
+          521,
+          540,
+          5483,
+          5716
         ]
       },
       {
         "label": "csv-parse",
         "fill": false,
         "data": [
-          34,
-          316,
-          359,
-          3350,
-          3809
+          88,
+          806,
+          921,
+          8377,
+          9518
         ]
       }
     ]

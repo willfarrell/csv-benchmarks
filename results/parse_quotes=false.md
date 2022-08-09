@@ -1,8 +1,8 @@
 | Package | 10x10K | 100x10K | 10x100K | 100x100K | 10x1000K 
 |---------|---|---|---|---|---
-| **csv-rex** | 10ms | 80ms | 85ms | 828ms | 872ms 
-| **papaparse** | 6ms | 30ms | 53ms | 292ms | 535ms 
-| **csv-parser** | 21ms | 205ms | 222ms | 2,198ms | 2,324ms 
-| **csvtojson** | 17ms | 154ms | 170ms | 1,553ms | 1,753ms 
-| **csv-parse** | 34ms | 316ms | 359ms | 3,350ms | 3,809ms 
-| **fast-csv** | 49ms | 460ms | 517ms | 4,839ms | 5,450ms 
+| **papaparse** | 13ms | 66ms | 128ms | 615ms | 1,260ms 
+| **csv-rex** | 22ms | 180ms | 209ms | 1,801ms | 2,115ms 
+| **csvtojson** | 42ms | 378ms | 417ms | 3,797ms | 4,271ms 
+| **csv-parser** | 52ms | 521ms | 540ms | 5,483ms | 5,716ms 
+| **csv-parse** | 88ms | 806ms | 921ms | 8,377ms | 9,518ms 
+| **fast-csv** | 137ms | 1,255ms | 1,422ms | 13,313ms | 15,136ms 

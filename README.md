@@ -6,7 +6,7 @@ Benchmarks of popular CSV parsers and formatters:
 | Package | Version | Published | Parse | Format 
 |---------|---------|-----------|-------|--------
 | [csv-parse](https://www.npmjs.com/package/csv-parse) | 5.3.0 | 1 month ago | Yes |  
-| [csv-parser](https://www.npmjs.com/package/csv-parser) | 3.0.0 | 2 years ago | Yes | Yes 
+| [csv-parser](https://www.npmjs.com/package/csv-parser) | 3.0.0 | 2 years ago | Yes |  
 | [csv-rex](https://www.npmjs.com/package/csv-rex) | 0.3.0 | 11 days ago | Yes | Yes 
 | [csv-stringify](https://www.npmjs.com/package/csv-stringify) | 6.2.0 | 1 month ago |  | Yes 
 | [csvtojson](https://www.npmjs.com/package/csvtojson) | 2.0.10 | 3 years ago | Yes |  
@@ -38,12 +38,12 @@ Benchmarked on GitHub Actions. Only the fastest 5 will be visualized.
 <!-- parse quotes=true -->
 | Package | 10x10K | 100x10K | 10x100K | 100x100K | 10x1000K 
 |---------|---|---|---|---|---
-| **csv-rex** | 16ms | 136ms | 144ms | 1,384ms | 1,457ms 
-| **papaparse** | 16ms | 142ms | 149ms | 1,443ms | 1,523ms 
-| **csv-parser** | 25ms | 238ms | 255ms | 2,503ms | 2,665ms 
-| **csvtojson** | 32ms | 271ms | 298ms | 2,719ms | 3,045ms 
-| **csv-parse** | 39ms | 351ms | 397ms | 3,664ms | 4,123ms 
-| **fast-csv** | 58ms | 534ms | 600ms | 5,542ms | 6,216ms 
+| **csv-rex** | 36ms | 306ms | 345ms | 3,129ms | 3,476ms 
+| **papaparse** | 39ms | 314ms | 360ms | 3,212ms | 3,686ms 
+| **csv-parser** | 61ms | 598ms | 619ms | 6,331ms | 6,556ms 
+| **csvtojson** | 76ms | 663ms | 740ms | 6,603ms | 7,460ms 
+| **csv-parse** | 103ms | 918ms | 1,022ms | 9,590ms | 10,799ms 
+| **fast-csv** | 166ms | 1,514ms | 1,710ms | 15,796ms | 17,612ms 
 <!-- parse quotes=true -->
 
 ![Non-Quoted CSV Parser Benchmarks](https://github.com/willfarrell/csv-benchmarks/raw/main/results/parse_quotes%3Dfalse.png)
@@ -51,12 +51,12 @@ Benchmarked on GitHub Actions. Only the fastest 5 will be visualized.
 <!-- parse quotes=false -->
 | Package | 10x10K | 100x10K | 10x100K | 100x100K | 10x1000K 
 |---------|---|---|---|---|---
-| **csv-rex** | 10ms | 80ms | 85ms | 828ms | 872ms 
-| **papaparse** | 6ms | 30ms | 53ms | 292ms | 535ms 
-| **csv-parser** | 21ms | 205ms | 222ms | 2,198ms | 2,324ms 
-| **csvtojson** | 17ms | 154ms | 170ms | 1,553ms | 1,753ms 
-| **csv-parse** | 34ms | 316ms | 359ms | 3,350ms | 3,809ms 
-| **fast-csv** | 49ms | 460ms | 517ms | 4,839ms | 5,450ms 
+| **papaparse** | 13ms | 66ms | 128ms | 615ms | 1,260ms 
+| **csv-rex** | 22ms | 180ms | 209ms | 1,801ms | 2,115ms 
+| **csvtojson** | 42ms | 378ms | 417ms | 3,797ms | 4,271ms 
+| **csv-parser** | 52ms | 521ms | 540ms | 5,483ms | 5,716ms 
+| **csv-parse** | 88ms | 806ms | 921ms | 8,377ms | 9,518ms 
+| **fast-csv** | 137ms | 1,255ms | 1,422ms | 13,313ms | 15,136ms 
 <!-- parse quotes=false -->
 
 ### Format
@@ -66,9 +66,9 @@ Benchmarked on GitHub Actions. Only the fastest 5 will be visualized.
 <!-- format quotes=false -->
 | Package | 10x10K | 100x10K | 10x100K | 100x100K | 10x1000K 
 |---------|---|---|---|---|---
-| **csv-rex** | 12ms | 73ms | 117ms | 754ms | 1,218ms 
-| **csv-stringify** | 12ms | 66ms | 116ms | 686ms | 1,151ms 
-| **fast-csv** | 13ms | 73ms | 127ms | 781ms | 1,377ms 
+| **csv-rex** | 30ms | 162ms | 293ms | 1,661ms | 3,065ms 
+| **csv-stringify** | 32ms | 169ms | 309ms | 1,686ms | 3,043ms 
+| **fast-csv** | 36ms | 188ms | 353ms | 1,908ms | 3,517ms 
 <!-- format quotes=false -->
 
 ## Roadmap
