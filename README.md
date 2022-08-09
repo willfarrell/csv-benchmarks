@@ -14,6 +14,8 @@ Benchmarks of popular CSV parsers and formatters:
 | [csv-stringify](https://www.npmjs.com/package/csv-stringify) | 6.2.0 | 4 weeks ago |  | Yes 
 <!-- packages -->
 
+Your preferred CSV package missing? PRs welcome.
+
 ## Tests
 The tests run on generated data files with 10 - 100 columns and 10K - 1M rows, both quoted and unquoted. The stream implementation for each library were used to keep comparison consistent, but can be slower compared to self chunking in certain use cases.
 
@@ -28,7 +30,7 @@ The tests run on generated data files with 10 - 100 columns and 10K - 1M rows, b
 <!-- tests -->
 
 ## Results 
-Benchmarked on GitHub Actions.
+Benchmarked on GitHub Actions. Only the fastest 5 will be visualized.
 
 ### Parse
 ![Quoted CSV Parser Benchmarks](https://github.com/willfarrell/csv-benchmarks/raw/main/results/parse_quotes%3Dtrue.png)
