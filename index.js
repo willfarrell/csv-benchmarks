@@ -11,8 +11,15 @@ import { fileURLToPath } from "node:url"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const parseSources = ['csv-rex','papaparse', 'csv-parser', 'csvtojson', 'csv-parse', 'fast-csv']
-const formatSources = ['csv-rex','csv-stringify', 'fast-csv']
+const sources = [
+  'csv-rex',
+  'csv-parse',
+  'csv-parser',
+  'csv-stringify',
+  'csvtojson',
+  'fast-csv',
+  'papaparse',    
+]
 
 const tests = [
   {
@@ -40,17 +47,6 @@ const tests = [
    rows: 1_000_000,
    cycles: 5,
   },
-//{
-//  columns: 100,
-//  rows: 1_000_000,
-//  cycles: 3,
-//},
-  // Super slow
-//{
-//  columns: 10,
-//  rows: 10_000_000,
-//  cycles: 3,
-//},
 ];
 
 const run = async (sources, type, quotes = false) => {
@@ -147,7 +143,7 @@ const run = async (sources, type, quotes = false) => {
     createWriteStream(join(__dirname, `results/${type}_quotes=${quotes}.md`))
   ])
   
-  chart.data.datasets = chart.data.datasets.slice(0,4) // get first 5
+  chart.data.datasets = chart.data.datasets.slice(0,5) // get first 5
   console.log(JSON.stringify(chart))
   await pipeline([
     createReadableStream(JSON.stringify(chart, null, 2)),
@@ -208,7 +204,7 @@ const rtf = new Intl.RelativeTimeFormat('en', {
 const {dependencies} = await readFile(join(__dirname, './package.json')).then(data => JSON.parse(data))
 let table = `| Package | Version | Published | Parse | Format \n`
    table += `|---------|---------|-----------|-------|--------\n`
-   const packages = new Set([...parseSources, ...formatSources])
+   const packages = new Set(sources.sort())
    for (const pkg of packages) {
       const repo = await fetch(`https://registry.npmjs.org/${pkg}`).then(res => res.json())
       const version = repo['dist-tags'].latest
@@ -241,9 +237,9 @@ await readFile(join(__dirname, `README.md`), { encoding: 'utf8' })
 .then(data => writeFile(join(__dirname, `README.md`), data, { encoding: 'utf8' }))
 
 // run tests
-await run(parseSources, 'parse', true)
-await run(parseSources, 'parse', false)
-await run(formatSources, 'format', false)
+await run(sources, 'parse', true)
+await run(sources, 'parse', false)
+await run(sources, 'format', false)
 
 
 
