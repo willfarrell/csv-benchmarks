@@ -207,7 +207,7 @@ let table = `| Package | Version | Published | Parse | Format \n`
    const packages = new Set(sources.sort())
    for (const pkg of packages) {
       const repo = await fetch(`https://registry.npmjs.org/${pkg}`).then(res => res.json())
-      const version = repo['dist-tags'].latest
+      const version = dependencies[pkg] //repo['dist-tags'].latest
       const created = new Date(repo.time[version])
       const [value, unit] = diff(created)
       const published = rtf.format(value, unit)

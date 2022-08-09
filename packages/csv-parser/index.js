@@ -1,6 +1,6 @@
 import csvParser from "csv-parser";
 
 export const parse = csvParser
-export const format = () => console.log('Not Supported')
+export const format = false
 
 export default { parse, format }
