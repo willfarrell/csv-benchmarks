@@ -98,7 +98,9 @@ const run = async (sources, type, quotes = false) => {
       fill: false,
       data: []
     }
-    const {parse, format} = await import(`./packages/${source}/index.js`)
+    const engine = await import(`./packages/${source}/index.js`)
+    if (!engine[type]) continue
+    
     for (const { rows, columns, cycles } of tests) {
       let stream
       if (type === 'parse') {
@@ -106,25 +108,25 @@ const run = async (sources, type, quotes = false) => {
         await generateCSVFile({ readableFileName, columns, rows, quotes });
         stream = async () => pipeline([
           createReadStream(readableFileName),
-          parse()
+          engine.parse()
         ])
       } else if (type === 'format') {
         const arr = generateCSVArray({ columns, rows, quotes });
         stream = async () => pipeline([
           createReadableStream(arr),
-          format()
+          engine.format()
         ])
         //const writableFileName = join(tmpdir(), `${columns}x${rows}_${quotes ? 'quoted' : 'slim'}.csv`)
       }
       
       // Benchmark     
       const result = await benchmark(source, stream, { cycles, columns, rows });
-      dataset.data.push(result.toLocaleString())
+      dataset.data.push(result)
     }
     if (chart.data.datasets.length < 5) { 
       chart.data.datasets.push(dataset)
     }
-    table += `| **${dataset.label}** | ${dataset.data.join('ms | ')}ms \n`
+    table += `| **${dataset.label}** | ${dataset.data.map(result => result.toLocaleString()).join('ms | ')}ms \n`
   }
   
   // Save results
@@ -156,16 +158,54 @@ const run = async (sources, type, quotes = false) => {
 
 
 // Update README packages table
+const diff = (d) => {
+  const msPerMinute = 60 * 1000
+  const msPerHour = msPerMinute * 60
+  const msPerDay = msPerHour * 24
+  const msPerWeek = msPerDay * 7
+  const msPerMonth = msPerDay * 30
+  const msPerYear = msPerDay * 365.25
+  const elapsed = d - new Date()
+  const absElapsed = Math.abs(elapsed)
+  // if (absElapsed < msPerMinute) {
+  //   return [Math.round(elapsed / 1000), 'second']
+  // }
+  // if (absElapsed < msPerHour) {
+  //   return [Math.round(elapsed / msPerMinute), 'minute']
+  // }
+  // if (absElapsed < msPerDay) {
+  //   return [Math.round(elapsed / msPerHour), 'hour']
+  // }
+  if (absElapsed < msPerWeek * 2) {
+    return [Math.round(elapsed / msPerDay), 'day']
+  }
+  if (absElapsed < msPerMonth) {
+    return [Math.round(elapsed / msPerWeek), 'week']
+  }
+  if (absElapsed < msPerYear) {
+    return [Math.round(elapsed / msPerMonth), 'month']
+  }
+  return [Math.round(elapsed / msPerYear), 'year']
+}
+const rtf = new Intl.RelativeTimeFormat('en', {
+  localeMatcher: 'best fit',
+  numeric: 'always',
+  style: 'long'
+})
 const {dependencies} = await readFile(join(__dirname, './package.json')).then(data => JSON.parse(data))
-let table = `| Package | Version | Parse | Format \n`
-   table += `|---------|---------|-------|--------\n`
+let table = `| Package | Version | Published | Parse | Format \n`
+   table += `|---------|---------|-----------|-------|--------\n`
    const packages = new Set([...parseSources, ...formatSources])
    for (const pkg of packages) {
-      const {version} = await fetch(`https://registry.npmjs.org/${pkg}/latest`).then(res => res.json())
+      const repo = await fetch(`https://registry.npmjs.org/${pkg}`).then(res => res.json())
+      const version = repo['dist-tags'].latest
+      const created = new Date(repo.time[version])
+      const [value, unit] = diff(created)
+      const published = rtf.format(value, unit)
        const {parse, format} = await import(`./packages/${pkg}/index.js`)
        const {downloads} = await fetch(`https://api.npmjs.org/downloads/point/last-week/${pkg}`).then(res => res.json())
-     console.log(`${pkg}@${version} ${downloads.toLocaleString()}/week`)
-     table += `| [${pkg}](https://www.npmjs.com/package/${pkg}) | ${version} | ${!!parse ? 'Yes' : ''} | ${!!format ? 'Yes' : ''} \n`
+     console.log(`${pkg}@${version} published ${published}, ${downloads.toLocaleString()}/week`)
+     table += `| [${pkg}](https://www.npmjs.com/package/${pkg}) | ${version} | ${published} | ${!!parse ? 'Yes' : ''} | ${!!format ? 'Yes' : ''} \n`
    }
 await readFile(join(__dirname, `README.md`), { encoding: 'utf8' })
 .then(data => {
