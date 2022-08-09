@@ -9,9 +9,9 @@ Benchmarks of popular CSV parsers and formatters:
 | [papaparse](https://www.npmjs.com/package/papaparse) | 5.3.2 | 5 months ago | Yes |  
 | [csv-parser](https://www.npmjs.com/package/csv-parser) | 3.0.0 | 2 years ago | Yes | Yes 
 | [csvtojson](https://www.npmjs.com/package/csvtojson) | 2.0.10 | 3 years ago | Yes |  
-| [csv-parse](https://www.npmjs.com/package/csv-parse) | 5.3.0 | 4 weeks ago | Yes |  
+| [csv-parse](https://www.npmjs.com/package/csv-parse) | 5.3.0 | 1 month ago | Yes |  
 | [fast-csv](https://www.npmjs.com/package/fast-csv) | 4.3.6 | 2 years ago | Yes | Yes 
-| [csv-stringify](https://www.npmjs.com/package/csv-stringify) | 6.2.0 | 4 weeks ago |  | Yes 
+| [csv-stringify](https://www.npmjs.com/package/csv-stringify) | 6.2.0 | 1 month ago |  | Yes 
 <!-- packages -->
 
 Your preferred CSV package missing? PRs welcome.

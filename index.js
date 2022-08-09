@@ -123,9 +123,21 @@ const run = async (sources, type, quotes = false) => {
       const result = await benchmark(source, stream, { cycles, columns, rows });
       dataset.data.push(result)
     }
-    if (chart.data.datasets.length < 5) { 
-      chart.data.datasets.push(dataset)
-    }
+    chart.data.datasets.push(dataset)
+    
+  }
+  
+  // filter out the slow ones
+  const ranks = {}
+  for (const dataset of chart.data.datasets) {
+    const {label, data} = dataset
+    ranks[label] = data.reduce((total, value) => (total+value))
+  }
+  chart.data.datasets = chart.data.datasets
+  .sort((a, b) => {
+    return ranks[a.label] - ranks[b.label]
+  })
+  for (const dataset of chart.data.datasets) {
     table += `| **${dataset.label}** | ${dataset.data.map(result => result.toLocaleString()).join('ms | ')}ms \n`
   }
   
@@ -135,6 +147,7 @@ const run = async (sources, type, quotes = false) => {
     createWriteStream(join(__dirname, `results/${type}_quotes=${quotes}.md`))
   ])
   
+  chart.data.datasets = chart.data.datasets.slice(0,4) // get first 5
   console.log(JSON.stringify(chart))
   await pipeline([
     createReadableStream(JSON.stringify(chart, null, 2)),
