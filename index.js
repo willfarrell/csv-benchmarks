@@ -124,7 +124,7 @@ const run = async (quotes = false) => {
       
     }
     chart.data.datasets.push(dataset)
-    table += `| **${dataset.label}** | ${dataset.data.join('ms | ')} \n`
+    table += `| **${dataset.label}** | ${dataset.data.join('ms | ')}ms \n`
   }
   
   // Save results
