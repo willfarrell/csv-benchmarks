@@ -6,7 +6,7 @@ Benchmarks of popular CSV parsers and formatters:
 | Package | Version | Published | Parse | Format 
 |---------|---------|-----------|-------|--------
 | [csv-rex](https://www.npmjs.com/package/csv-rex) | 0.3.0 | 11 days ago | Yes | Yes 
-| [papaparse](https://www.npmjs.com/package/papaparse) | 5.3.2 | 5 months ago |  | Yes 
+| [papaparse](https://www.npmjs.com/package/papaparse) | 5.3.2 | 5 months ago | Yes |  
 | [csv-parser](https://www.npmjs.com/package/csv-parser) | 3.0.0 | 2 years ago | Yes | Yes 
 | [csvtojson](https://www.npmjs.com/package/csvtojson) | 2.0.10 | 3 years ago | Yes |  
 | [csv-parse](https://www.npmjs.com/package/csv-parse) | 5.3.0 | 4 weeks ago | Yes |  
