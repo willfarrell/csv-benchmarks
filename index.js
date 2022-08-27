@@ -1,12 +1,18 @@
 import { tmpdir } from 'node:os'
-import { dirname, join } from "node:path"
+import { dirname, join } from 'node:path'
 import { createReadStream, createWriteStream } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
-import { pipeline, pipejoin, streamToArray, streamToString, createReadableStream } from '@datastream/core'
-import { generateCSVFile, generateCSVArray } from "./lib/generateCSV.js"
-import { benchmark } from "./lib/benchmark.js";
+import {
+  pipeline,
+  pipejoin,
+  streamToArray,
+  streamToString,
+  createReadableStream,
+} from '@datastream/core'
+import { generateCSVFile, generateCSVArray } from './lib/generateCSV.js'
+import { benchmark } from './lib/benchmark.js'
 
-import { fileURLToPath } from "node:url"
+import { fileURLToPath } from 'node:url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -18,7 +24,7 @@ const sources = [
   'csv-stringify',
   'csvtojson',
   'fast-csv',
-  'papaparse',    
+  'papaparse',
 ]
 
 const tests = [
@@ -43,18 +49,18 @@ const tests = [
     cycles: 5,
   },
   {
-   columns: 10,
-   rows: 1_000_000,
-   cycles: 5,
+    columns: 10,
+    rows: 1_000_000,
+    cycles: 5,
   },
-];
+]
 
 const run = async (sources, type, quotes = false) => {
   const chart = {
     type: 'line',
     data: {
-      labels: tests.map(t => `${t.columns}x${t.rows/1000}K`),
-      datasets: []
+      labels: tests.map((t) => `${t.columns}x${t.rows / 1000}K`),
+      datasets: [],
     },
     options: {
       title: {
@@ -84,87 +90,96 @@ const run = async (sources, type, quotes = false) => {
       },
     },
   }
-  
+
   let table = `| Package | ${chart.data.labels.join(' | ')} \n`
-     table += `|---------|-${chart.data.labels.map(v => ('-')).join('-|-')}-\n`
-  
-  for(const source of sources) {  
+  table += `|---------|-${chart.data.labels.map((v) => '-').join('-|-')}-\n`
+
+  for (const source of sources) {
     const dataset = {
       label: source,
       fill: false,
-      data: []
+      data: [],
     }
     const engine = await import(`./packages/${source}/index.js`)
     if (!engine[type]) continue
-    
+
     for (const { rows, columns, cycles } of tests) {
       let stream
       if (type === 'parse') {
-        const readableFileName = join(tmpdir(), `${columns}x${rows}_${quotes ? 'quoted' : 'slim'}.csv`)
-        await generateCSVFile({ readableFileName, columns, rows, quotes });
-        stream = async () => pipeline([
-          createReadStream(readableFileName),
-          engine.parse()
-        ])
+        const readableFileName = join(
+          tmpdir(),
+          `${columns}x${rows}_${quotes ? 'quoted' : 'slim'}.csv`
+        )
+        await generateCSVFile({ readableFileName, columns, rows, quotes })
+        stream = async () =>
+          pipeline([
+            createReadStream(readableFileName),
+            engine.parse({ quotes }),
+          ])
       } else if (type === 'format') {
-        const arr = generateCSVArray({ columns, rows, quotes });
-        stream = async () => pipeline([
-          createReadableStream(arr),
-          engine.format()
-        ])
+        const arr = generateCSVArray({ columns, rows, quotes })
+        stream = async () =>
+          pipeline([createReadableStream(arr), engine.format()])
         //const writableFileName = join(tmpdir(), `${columns}x${rows}_${quotes ? 'quoted' : 'slim'}.csv`)
       }
-      
-      // Benchmark     
-      const result = await benchmark(source, stream, { cycles, columns, rows });
+
+      // Benchmark
+      const result = await benchmark(source, stream, { cycles, columns, rows })
       dataset.data.push(result)
     }
     chart.data.datasets.push(dataset)
-    
   }
-  
+
   // filter out the slow ones
   const ranks = {}
   for (const dataset of chart.data.datasets) {
-    const {label, data} = dataset
-    ranks[label] = data.reduce((total, value) => (total+value))
+    const { label, data } = dataset
+    ranks[label] = data.reduce((total, value) => total + value)
   }
-  chart.data.datasets = chart.data.datasets
-  .sort((a, b) => {
+  chart.data.datasets = chart.data.datasets.sort((a, b) => {
     return ranks[a.label] - ranks[b.label]
   })
   for (const dataset of chart.data.datasets) {
-    table += `| **${dataset.label}** | ${dataset.data.map(result => result.toLocaleString()).join('ms | ')}ms \n`
+    table += `| **${dataset.label}** | ${dataset.data
+      .map((result) => result.toLocaleString())
+      .join('ms | ')}ms \n`
   }
-  
+
   // Save results
   await pipeline([
     createReadableStream(table),
-    createWriteStream(join(__dirname, `results/${type}_quotes=${quotes}.md`))
+    createWriteStream(join(__dirname, `results/${type}_quotes=${quotes}.md`)),
   ])
-  
-  chart.data.datasets = chart.data.datasets.slice(0,5) // get first 5
+
+  chart.data.datasets = chart.data.datasets.slice(0, 5) // get first 5
   console.log(JSON.stringify(chart))
   await pipeline([
     createReadableStream(JSON.stringify(chart, null, 2)),
-    createWriteStream(join(__dirname, `results/${type}_quotes=${quotes}.json`))
+    createWriteStream(join(__dirname, `results/${type}_quotes=${quotes}.json`)),
   ])
-  
+
   await pipeline([
-    await fetch(`https://quickchart.io/chart?c=${JSON.stringify(chart)}`).then(res => res.body),
-    createWriteStream(join(__dirname, `results/${type}_quotes=${quotes}.png`))
+    await fetch(`https://quickchart.io/chart?c=${JSON.stringify(chart)}`).then(
+      (res) => res.body
+    ),
+    createWriteStream(join(__dirname, `results/${type}_quotes=${quotes}.png`)),
   ])
-  
+
   // Update README
   await readFile(join(__dirname, `README.md`), { encoding: 'utf8' })
-  .then(data => {
-    const pattern = new RegExp(`<!-- ${type} quotes=${quotes} -->([\\s\\S]*?)<!-- ${type} quotes=${quotes} -->`)
-    return data.replace(pattern, `<!-- ${type} quotes=${quotes} -->\n${table}<!-- ${type} quotes=${quotes} -->`)
-  })
-  .then(data => writeFile(join(__dirname, `README.md`), data, { encoding: 'utf8' }))
-
+    .then((data) => {
+      const pattern = new RegExp(
+        `<!-- ${type} quotes=${quotes} -->([\\s\\S]*?)<!-- ${type} quotes=${quotes} -->`
+      )
+      return data.replace(
+        pattern,
+        `<!-- ${type} quotes=${quotes} -->\n${table}<!-- ${type} quotes=${quotes} -->`
+      )
+    })
+    .then((data) =>
+      writeFile(join(__dirname, `README.md`), data, { encoding: 'utf8' })
+    )
 }
-
 
 // Update README packages table
 const diff = (d) => {
@@ -199,48 +214,58 @@ const diff = (d) => {
 const rtf = new Intl.RelativeTimeFormat('en', {
   localeMatcher: 'best fit',
   numeric: 'always',
-  style: 'long'
+  style: 'long',
 })
-const {dependencies} = await readFile(join(__dirname, './package.json')).then(data => JSON.parse(data))
+const { dependencies } = await readFile(join(__dirname, './package.json')).then(
+  (data) => JSON.parse(data)
+)
 let table = `| Package | Version | Published | Parse | Format \n`
-   table += `|---------|---------|-----------|-------|--------\n`
-   const packages = new Set(sources.sort())
-   for (const pkg of packages) {
-      const repo = await fetch(`https://registry.npmjs.org/${pkg}`).then(res => res.json())
-      const version = dependencies[pkg] //repo['dist-tags'].latest
-      const created = new Date(repo.time[version])
-      const [value, unit] = diff(created)
-      const published = rtf.format(value, unit)
-       const {parse, format} = await import(`./packages/${pkg}/index.js`)
-       const {downloads} = await fetch(`https://api.npmjs.org/downloads/point/last-week/${pkg}`).then(res => res.json())
-     console.log(`${pkg}@${version} published ${published}, ${downloads.toLocaleString()}/week`)
-     table += `| [${pkg}](https://www.npmjs.com/package/${pkg}) | ${version} | ${published} | ${!!parse ? 'Yes' : ''} | ${!!format ? 'Yes' : ''} \n`
-   }
+table += `|---------|---------|-----------|-------|--------\n`
+const packages = new Set(sources.sort())
+for (const pkg of packages) {
+  const repo = await fetch(`https://registry.npmjs.org/${pkg}`).then((res) =>
+    res.json()
+  )
+  const version = dependencies[pkg] //repo['dist-tags'].latest
+  const created = new Date(repo.time[version])
+  const [value, unit] = diff(created)
+  const published = rtf.format(value, unit)
+  const { parse, format } = await import(`./packages/${pkg}/index.js`)
+  const { downloads } = await fetch(
+    `https://api.npmjs.org/downloads/point/last-week/${pkg}`
+  ).then((res) => res.json())
+  console.log(
+    `${pkg}@${version} published ${published}, ${downloads.toLocaleString()}/week`
+  )
+  table += `| [${pkg}](https://www.npmjs.com/package/${pkg}) | ${version} | ${published} | ${
+    !!parse ? 'Yes' : ''
+  } | ${!!format ? 'Yes' : ''} \n`
+}
 await readFile(join(__dirname, `README.md`), { encoding: 'utf8' })
-.then(data => {
-  const pattern = new RegExp(`<!-- packages -->([\\s\\S]*?)<!-- packages -->`)
-  return data.replace(pattern, `<!-- packages -->\n${table}<!-- packages -->`)
-})
-.then(data => writeFile(join(__dirname, `README.md`), data, { encoding: 'utf8' }))
+  .then((data) => {
+    const pattern = new RegExp(`<!-- packages -->([\\s\\S]*?)<!-- packages -->`)
+    return data.replace(pattern, `<!-- packages -->\n${table}<!-- packages -->`)
+  })
+  .then((data) =>
+    writeFile(join(__dirname, `README.md`), data, { encoding: 'utf8' })
+  )
 
 // Update README tests table
 table = `| columns x rows | cycles \n`
-   table += `|----------------|--------\n`
-   for (const test of tests) {
-     table += `| ${test.columns.toLocaleString()} x ${test.rows.toLocaleString()} | ${test.cycles.toLocaleString()} \n`
-   }
+table += `|----------------|--------\n`
+for (const test of tests) {
+  table += `| ${test.columns.toLocaleString()} x ${test.rows.toLocaleString()} | ${test.cycles.toLocaleString()} \n`
+}
 await readFile(join(__dirname, `README.md`), { encoding: 'utf8' })
-.then(data => {
-  const pattern = new RegExp(`<!-- tests -->([\\s\\S]*?)<!-- tests -->`)
-  return data.replace(pattern, `<!-- tests -->\n${table}<!-- tests -->`)
-})
-.then(data => writeFile(join(__dirname, `README.md`), data, { encoding: 'utf8' }))
+  .then((data) => {
+    const pattern = new RegExp(`<!-- tests -->([\\s\\S]*?)<!-- tests -->`)
+    return data.replace(pattern, `<!-- tests -->\n${table}<!-- tests -->`)
+  })
+  .then((data) =>
+    writeFile(join(__dirname, `README.md`), data, { encoding: 'utf8' })
+  )
 
 // run tests
 await run(sources, 'parse', true)
 await run(sources, 'parse', false)
 await run(sources, 'format', false)
-
-
-
-
