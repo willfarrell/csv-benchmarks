@@ -71,13 +71,6 @@ Benchmarked on GitHub Actions. Only the fastest 5 will be visualized.
 | **fast-csv** | 43ms | 251ms | 438ms | 2,441ms | 4,534ms 
 <!-- format quotes=false -->
 
-## Roadmap
-- Add in more parsers
-  - `stream-csv-as-json`
-  - `30-seconds-of-code`
-- Add in formatters
-  - `csv-string`
-
 ## Thanks
 - leanylabs who inspired the making of this repo with their article [CSV Parsers Comparison](https://leanylabs.com/blog/js-csv-parsers-benchmarks/).
 - [quickchart.io.io](https://quickchart.io) for the automation of the chart creation.
