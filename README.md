@@ -73,5 +73,5 @@ Benchmarked on GitHub Actions. Only the fastest 5 will be visualized.
 
 ## Thanks
 - leanylabs who inspired the making of this repo with their article [CSV Parsers Comparison](https://leanylabs.com/blog/js-csv-parsers-benchmarks/).
-- [quickchart.io.io](https://quickchart.io) for the automation of the chart creation.
+- [quickchart.io](https://quickchart.io) for the automation of the chart creation.
 - GitHub for providing free use of Actions for running the benchmarks.
