@@ -16,6 +16,14 @@ Benchmarks of popular CSV parsers and formatters:
 
 Your preferred CSV package missing? PRs welcome.
 
+## Excluded Packages
+| Package | Version | Parse | Format | Reason
+|---------|---------|-------|--------|--------
+| [dekkai](https://www.npmjs.com/package/dekkai) | 0.3.6 | Yes |  | Crashes with 100k rows
+| [neat-csv](https://www.npmjs.com/package/neat-csv) | 7.0.0 | Yes |  | Wrapper around `csv-parser`
+| [xlsx](https://www.npmjs.com/package/xlsx) | 0.18.5 | Yes |  | Doesn't return transform stream
+
+
 ## Tests
 The tests run on generated data files with 10 - 100 columns and 10K - 1M rows, both quoted and unquoted. The stream implementation for each library were used to keep comparison consistent, but can be slower compared to self chunking in certain use cases.
 

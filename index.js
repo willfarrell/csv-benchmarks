@@ -21,6 +21,7 @@ const sources = [
   'csv-rex',
   'csv-parse',
   'csv-parser',
+  'csv-streamify',
   'csv-stringify',
   'csvtojson',
   'fast-csv',
