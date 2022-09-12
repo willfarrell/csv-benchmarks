@@ -10,36 +10,36 @@
     ],
     "datasets": [
       {
-        "label": "csv-stringify",
-        "fill": false,
-        "data": [
-          39,
-          219,
-          395,
-          2086,
-          3585
-        ]
-      },
-      {
         "label": "csv-rex",
         "fill": false,
         "data": [
+          34,
+          153,
+          327,
+          1492,
+          3293
+        ]
+      },
+      {
+        "label": "csv-stringify",
+        "fill": false,
+        "data": [
           37,
-          208,
-          356,
-          2066,
-          3936
+          191,
+          364,
+          2014,
+          3399
         ]
       },
       {
         "label": "fast-csv",
         "fill": false,
         "data": [
-          43,
-          251,
-          438,
-          2441,
-          4534
+          39,
+          193,
+          389,
+          1931,
+          4178
         ]
       }
     ]
