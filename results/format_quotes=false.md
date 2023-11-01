@@ -1,5 +1,5 @@
 | Package | 10x10K | 100x10K | 10x100K | 100x100K | 10x1000K 
 |---------|---|---|---|---|---
-| **csv-rex** | 30ms | 129ms | 295ms | 1,290ms | 3,022ms 
-| **csv-stringify** | 34ms | 139ms | 333ms | 1,353ms | 3,392ms 
-| **fast-csv** | 39ms | 167ms | 389ms | 1,623ms | 3,801ms 
+| **csv-rex** | 33ms | 154ms | 369ms | 1,670ms | 2,921ms 
+| **csv-stringify** | 34ms | 172ms | 351ms | 1,789ms | 3,640ms 
+| **fast-csv** | 44ms | 201ms | 395ms | 2,138ms | 4,302ms 
