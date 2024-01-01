@@ -5,14 +5,14 @@ Benchmarks of popular CSV parsers and formatters:
 <!-- packages -->
 | Package | Version | Published | Parse | Format 
 |---------|---------|-----------|-------|--------
-| [csv-parse](https://www.npmjs.com/package/csv-parse) | 5.5.2 | 2 months ago | Yes |  
+| [csv-parse](https://www.npmjs.com/package/csv-parse) | 5.5.3 | 3 weeks ago | Yes |  
 | [csv-parser](https://www.npmjs.com/package/csv-parser) | 3.0.0 | 3 years ago | Yes |  
-| [csv-rex](https://www.npmjs.com/package/csv-rex) | 0.7.0 | 6 months ago | Yes | Yes 
+| [csv-rex](https://www.npmjs.com/package/csv-rex) | 0.7.0 | 7 months ago | Yes | Yes 
 | [csv-streamify](https://www.npmjs.com/package/csv-streamify) | 4.0.0 | 6 years ago | Yes |  
-| [csv-stringify](https://www.npmjs.com/package/csv-stringify) | 6.4.4 | 2 months ago |  | Yes 
-| [csvtojson](https://www.npmjs.com/package/csvtojson) | 2.0.10 | 4 years ago | Yes |  
+| [csv-stringify](https://www.npmjs.com/package/csv-stringify) | 6.4.5 | 3 weeks ago |  | Yes 
+| [csvtojson](https://www.npmjs.com/package/csvtojson) | 2.0.10 | 5 years ago | Yes |  
 | [fast-csv](https://www.npmjs.com/package/fast-csv) | 4.3.6 | 3 years ago | Yes | Yes 
-| [papaparse](https://www.npmjs.com/package/papaparse) | 5.4.1 | 8 months ago | Yes |  
+| [papaparse](https://www.npmjs.com/package/papaparse) | 5.4.1 | 9 months ago | Yes |  
 <!-- packages -->
 
 Your preferred CSV package missing? PRs welcome. Excluded packages in `/docs/EXCLUDED.md`.
@@ -39,13 +39,13 @@ Benchmarked on GitHub Actions. Only the fastest 5 will be visualized.
 <!-- parse quotes=true -->
 | Package | 10x10K | 100x10K | 10x100K | 100x100K | 10x1000K 
 |---------|---|---|---|---|---
-| **csv-rex** | 23ms | 175ms | 212ms | 1,783ms | 2,125ms 
-| **papaparse** | 41ms | 212ms | 395ms | 2,084ms | 4,052ms 
-| **csv-parser** | 38ms | 353ms | 383ms | 3,803ms | 4,095ms 
-| **csvtojson** | 58ms | 464ms | 567ms | 4,642ms | 5,741ms 
-| **csv-parse** | 77ms | 654ms | 761ms | 6,926ms | 7,886ms 
-| **csv-streamify** | 73ms | 694ms | 806ms | 7,684ms | 8,915ms 
-| **fast-csv** | 105ms | 926ms | 1,097ms | 9,796ms | 11,348ms 
+| **csv-rex** | 24ms | 182ms | 224ms | 1,843ms | 2,227ms 
+| **papaparse** | 43ms | 205ms | 404ms | 2,021ms | 3,993ms 
+| **csv-parser** | 38ms | 352ms | 389ms | 3,768ms | 4,166ms 
+| **csvtojson** | 60ms | 479ms | 593ms | 4,833ms | 5,921ms 
+| **csv-parse** | 76ms | 664ms | 759ms | 6,940ms | 7,663ms 
+| **csv-streamify** | 73ms | 713ms | 821ms | 7,955ms | 9,107ms 
+| **fast-csv** | 105ms | 924ms | 1,074ms | 9,521ms | 10,999ms 
 <!-- parse quotes=true -->
 
 ![Non-Quoted CSV Parser Benchmarks](https://github.com/willfarrell/csv-benchmarks/raw/main/results/parse_quotes%3Dfalse.png)
@@ -53,13 +53,13 @@ Benchmarked on GitHub Actions. Only the fastest 5 will be visualized.
 <!-- parse quotes=false -->
 | Package | 10x10K | 100x10K | 10x100K | 100x100K | 10x1000K 
 |---------|---|---|---|---|---
-| **csv-rex** | 9ms | 42ms | 76ms | 441ms | 776ms 
-| **csvtojson** | 32ms | 245ms | 322ms | 2,504ms | 3,274ms 
-| **csv-parser** | 33ms | 309ms | 338ms | 3,302ms | 3,657ms 
-| **papaparse** | 124ms | 57ms | 1,134ms | 541ms | 10,200ms 
-| **csv-parse** | 57ms | 511ms | 598ms | 5,415ms | 6,490ms 
-| **csv-streamify** | 64ms | 650ms | 762ms | 7,368ms | 8,625ms 
-| **fast-csv** | 83ms | 749ms | 871ms | 7,949ms | 9,017ms 
+| **csv-rex** | 9ms | 44ms | 80ms | 448ms | 815ms 
+| **csvtojson** | 33ms | 248ms | 329ms | 2,529ms | 3,312ms 
+| **csv-parser** | 35ms | 322ms | 353ms | 3,448ms | 3,775ms 
+| **papaparse** | 123ms | 58ms | 1,125ms | 549ms | 10,195ms 
+| **csv-parse** | 61ms | 536ms | 627ms | 5,636ms | 6,331ms 
+| **csv-streamify** | 63ms | 653ms | 764ms | 7,436ms | 8,633ms 
+| **fast-csv** | 88ms | 776ms | 910ms | 8,055ms | 9,395ms 
 <!-- parse quotes=false -->
 
 ### Format
@@ -69,9 +69,9 @@ Benchmarked on GitHub Actions. Only the fastest 5 will be visualized.
 <!-- format quotes=false -->
 | Package | 10x10K | 100x10K | 10x100K | 100x100K | 10x1000K 
 |---------|---|---|---|---|---
-| **csv-rex** | 20ms | 102ms | 201ms | 1,023ms | 2,018ms 
-| **csv-stringify** | 24ms | 110ms | 245ms | 1,081ms | 2,370ms 
-| **fast-csv** | 28ms | 128ms | 282ms | 1,291ms | 2,767ms 
+| **csv-rex** | 22ms | 103ms | 220ms | 1,163ms | 2,394ms 
+| **csv-stringify** | 26ms | 110ms | 247ms | 1,146ms | 2,610ms 
+| **fast-csv** | 31ms | 138ms | 302ms | 1,259ms | 2,847ms 
 <!-- format quotes=false -->
 
 ## Thanks
