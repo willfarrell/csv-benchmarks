@@ -33,12 +33,12 @@
     "csv-streamify": "4.0.0",
     "csv-stringify": "6.4.5",
     "csvtojson": "2.0.10",
-    "fast-csv": "4.3.6",
+    "fast-csv": "5.0.0",
     "json2csv": "5.0.7",
     "jsontocsv": "0.3.0",
     "papaparse": "5.4.1"
   },
   "devDependencies": {
-    "npm-check-updates": "16.14.12"
+    "npm-check-updates": "16.14.14"
   }
 }
