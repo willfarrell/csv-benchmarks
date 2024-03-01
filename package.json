@@ -27,18 +27,18 @@
   "homepage": "https://github.com/willfarrell/csv-benchmarks#readme",
   "dependencies": {
     "@datastream/core": "^0.0.6",
-    "csv-parse": "5.5.3",
+    "csv-parse": "5.5.5",
     "csv-parser": "3.0.0",
     "csv-rex": "0.7.0",
     "csv-streamify": "4.0.0",
-    "csv-stringify": "6.4.5",
+    "csv-stringify": "6.4.6",
     "csvtojson": "2.0.10",
-    "fast-csv": "5.0.0",
+    "fast-csv": "5.0.1",
     "json2csv": "5.0.7",
     "jsontocsv": "0.3.0",
     "papaparse": "5.4.1"
   },
   "devDependencies": {
-    "npm-check-updates": "16.14.14"
+    "npm-check-updates": "16.14.15"
   }
 }
