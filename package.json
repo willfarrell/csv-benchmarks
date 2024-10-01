@@ -39,6 +39,6 @@
     "papaparse": "5.4.1"
   },
   "devDependencies": {
-    "npm-check-updates": "17.1.0"
+    "npm-check-updates": "17.1.3"
   }
 }
