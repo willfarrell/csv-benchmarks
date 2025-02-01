@@ -28,7 +28,7 @@
   "dependencies": {
     "@datastream/core": "^0.0.6",
     "csv-parse": "5.6.0",
-    "csv-parser": "3.1.0",
+    "csv-parser": "3.2.0",
     "csv-rex": "0.7.0",
     "csv-streamify": "4.0.0",
     "csv-stringify": "6.5.2",
@@ -36,9 +36,9 @@
     "fast-csv": "5.0.2",
     "json2csv": "5.0.7",
     "jsontocsv": "0.3.0",
-    "papaparse": "5.4.1"
+    "papaparse": "5.5.2"
   },
   "devDependencies": {
-    "npm-check-updates": "17.1.13"
+    "npm-check-updates": "17.1.14"
   }
 }

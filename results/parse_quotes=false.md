@@ -1,9 +1,9 @@
 | Package | 10x10K | 100x10K | 10x100K | 100x100K | 10x1000K 
 |---------|---|---|---|---|---
-| **csv-rex** | 9ms | 43ms | 80ms | 449ms | 809ms 
-| **csvtojson** | 33ms | 253ms | 328ms | 2,509ms | 3,306ms 
-| **csv-parser** | 32ms | 297ms | 335ms | 3,145ms | 3,571ms 
-| **papaparse** | 127ms | 58ms | 1,161ms | 561ms | 10,427ms 
-| **csv-parse** | 59ms | 520ms | 608ms | 5,445ms | 6,329ms 
-| **csv-streamify** | 64ms | 660ms | 770ms | 7,505ms | 8,689ms 
-| **fast-csv** | 87ms | 770ms | 906ms | 8,028ms | 9,308ms 
+| **csv-rex** | 9ms | 45ms | 82ms | 439ms | 819ms 
+| **csvtojson** | 33ms | 256ms | 334ms | 2,600ms | 3,401ms 
+| **csv-parser** | 35ms | 322ms | 360ms | 3,499ms | 3,873ms 
+| **papaparse** | 126ms | 60ms | 1,152ms | 573ms | 10,411ms 
+| **csv-parse** | 59ms | 534ms | 619ms | 5,512ms | 6,413ms 
+| **csv-streamify** | 65ms | 661ms | 768ms | 7,468ms | 8,677ms 
+| **fast-csv** | 90ms | 801ms | 928ms | 8,329ms | 9,607ms 
